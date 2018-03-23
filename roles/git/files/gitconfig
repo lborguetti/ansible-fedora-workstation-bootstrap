@@ -4,7 +4,7 @@
 [commit]
     gpgsign = false
 [core]
-    editor = vim
+    editor = nvim
 [alias]
     rlog = log --pretty=format:\"%h %Cblue%cr%Creset %cn %Cgreen%s%Creset\"
 [color]
