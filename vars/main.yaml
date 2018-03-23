@@ -1,0 +1,28 @@
+---
+home_path: "{{ lookup('env', 'HOME') }}"
+conf_path: "{{ home_path }}/.config"
+
+user: "{{ lookup('env', 'USER') }}"
+
+# golang
+golang_version: "1.10"
+golang_linux_checksum: b5a64335f1490277b585832d1f6c7f8c6c11206cba5cd3f771dcb87b98ad1a33
+
+# packages
+packages_common:
+  - keepassx
+  - fuse-encfs
+  - tcpdump
+  - ngrep
+  - nmap
+  - nmap-ncat
+  - iftop
+
+# dropbox
+dropbox_url: "https://www.dropbox.com/download?dl=packages/fedora/nautilus-dropbox-2015.10.28-1.fedora.x86_64.rpm"
+
+# skype
+skype_url: "https://go.skype.com/skypeforlinux-64.rpm"
+
+# zoom
+zoom_url: "https://zoom.us/client/latest/zoom_x86_64.rpm"

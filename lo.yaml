@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  become: yes
+  become_method: sudo
+  become_user: root
+  vars_files:
+    - vars/main.yaml
+
+  roles:
+    - { role: packages, tags: packages }
+    - { role: bash, tags: bash }
+    - { role: tmux, tags: tmux }
+    - { role: neovim, tags: neovim }
+    - { role: docker, tags: docker }
+    - { role: golang, tags: golang }
+    - { role: git, tags: git }
+    - { role: dropbox, tags: dropbox }
+    - { role: skype, tags: skype }
+    - { role: zoom, tags: zoom }

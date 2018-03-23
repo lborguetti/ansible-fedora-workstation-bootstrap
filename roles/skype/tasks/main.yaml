@@ -1,0 +1,5 @@
+---
+- name: Ensure install skype for linux
+  dnf:
+    name: "{{ skype_url }}"
+    state: present

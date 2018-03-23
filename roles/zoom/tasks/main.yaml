@@ -1,0 +1,5 @@
+---
+- name: Ensure install zoom for linux
+  dnf:
+    name: "{{ zoom_url }}"
+    state: present
