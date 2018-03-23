@@ -3,10 +3,10 @@
 tags ?= all
 
 guard-%:
-	@ if [ "${${*}}" = "" ]; then \
+	@if [ "${${*}}" = "" ]; then \
 		echo "Variable '$*' not set"; \
 		exit 1; \
-		fi
+	fi
 
 .PHONY: setup
 setup:
