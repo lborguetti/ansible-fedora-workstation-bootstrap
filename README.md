@@ -1,6 +1,8 @@
 localhost
 ---
 
+![](https://raw.githubusercontent.com/lborguetti/localhost/master/assets/localhost-127.0.0.1.jpg)
+
 This project installs and configures most of the software I use on my Fedora Workstation.
 
 ## Installation
@@ -26,21 +28,12 @@ make ansible-playbook "playbook=lo" "tags=packages"
 ## Ansible roles/tags availables
 
 - { role: packages, tags: packages }
-
 - { role: bash, tags: bash }
-
 - { role: tmux, tags: tmux }
-
 - { role: neovim, tags: neovim }
-
 - { role: docker, tags: docker }
-
 - { role: golang, tags: golang }
-
 - { role: git, tags: git }
-
 - { role: dropbox, tags: dropbox }
-
 - { role: skype, tags: skype }
-
 - { role: zoom, tags: zoom }
