@@ -1,0 +1,28 @@
+---
+- name: Ensure install iptables
+  dnf:
+    name: iptables-services
+    state: present
+
+- name: Install iptables/ip6tables config
+  copy:
+    src: "etc/sysconfig/{{ item }}"
+    dest: "/etc/sysconfig/{{ item }}"
+  with_items:
+    - iptables
+    - ip6tables
+  register: iptables
+
+- name: Ensure disable firewalld services
+  systemd:
+    name: firewalld
+    state: stopped
+    enabled: no
+    masked: yes
+
+- name: Ensure enable iptables/ip6tables services
+  systemd:
+    name: "{{ item.item }}"
+    enabled: yes
+    state: "{{ (item.changed) | ternary('restarted', 'started') }}"
+  with_items: "{{ iptables.results }}"

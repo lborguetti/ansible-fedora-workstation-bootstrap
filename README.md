@@ -29,6 +29,7 @@ make ansible-playbook "playbook=lo" "tags=packages"
 
 - { role: system-update, tags: system-update }
 - { role: packages, tags: packages }
+- { role: iptables, tags: iptables }
 - { role: bash, tags: bash }
 - { role: tmux, tags: tmux }
 - { role: neovim, tags: neovim }
