@@ -27,6 +27,7 @@ make ansible-playbook "playbook=lo" "tags=packages"
 
 ## Ansible roles/tags availables
 
+- { role: system-update, tags: system-update }
 - { role: packages, tags: packages }
 - { role: bash, tags: bash }
 - { role: tmux, tags: tmux }

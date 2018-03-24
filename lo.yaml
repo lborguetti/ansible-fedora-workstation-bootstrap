@@ -7,6 +7,7 @@
     - vars/main.yaml
 
   roles:
+    - { role: system-update, tags: system-update }
     - { role: packages, tags: packages }
     - { role: bash, tags: bash }
     - { role: tmux, tags: tmux }
