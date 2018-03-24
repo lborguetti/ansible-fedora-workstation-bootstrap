@@ -18,13 +18,17 @@
     - docker-selinux
     - docker-engine
 
-- name: Ensure install docker
+- name: Ensure install docker/docker-compose
   dnf:
-    name: docker-ce
+    name: "{{ item }}"
     state: present
+  with_items:
+    - docker-ce
+    - docker-compose
 
 - name: Ensure your user in the docker group
   user:
     name: "{{ user }}"
     groups: docker
     append: yes
+
