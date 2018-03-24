@@ -17,6 +17,7 @@ packages_common:
   - nmap
   - nmap-ncat
   - iftop
+  - f27-backgrounds-extras-gnome
 
 # dropbox
 dropbox_url: "https://www.dropbox.com/download?dl=packages/fedora/nautilus-dropbox-2015.10.28-1.fedora.x86_64.rpm"
