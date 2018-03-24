@@ -39,3 +39,4 @@ make ansible-playbook "playbook=lo" "tags=packages"
 - { role: dropbox, tags: dropbox }
 - { role: skype, tags: skype }
 - { role: zoom, tags: zoom }
+- { role: keybase, tags: keybase }

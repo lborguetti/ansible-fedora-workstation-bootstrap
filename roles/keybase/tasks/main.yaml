@@ -1,0 +1,5 @@
+---
+- name: Ensure install keybase for linux
+  dnf:
+    name: "{{ keybase_url }}"
+    state: present

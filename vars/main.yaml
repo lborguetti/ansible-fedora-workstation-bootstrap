@@ -28,3 +28,6 @@ skype_url: "https://go.skype.com/skypeforlinux-64.rpm"
 
 # zoom
 zoom_url: "https://zoom.us/client/latest/zoom_x86_64.rpm"
+
+# keybase
+keybase_url: "https://prerelease.keybase.io/keybase_amd64.rpm"
