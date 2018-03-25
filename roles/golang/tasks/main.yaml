@@ -8,14 +8,14 @@
 
 - name: Create directory to Unarchive golang toolchain
   file:
-    path: "/usr/local/go"
+    path: "/usr/local/"
     state: directory
     mode: 0755
 
 - name: Unarchive golang toolchain
   unarchive:
     src: "/tmp/golang-{{ golang_version }}.tar.gz"
-    dest: "/usr/local/go"
+    dest: "/usr/local/"
 
 - name: Remove golang tarball
   file:
