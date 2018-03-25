@@ -40,3 +40,4 @@ make ansible-playbook "playbook=lo" "tags=packages"
 - { role: skype, tags: skype }
 - { role: zoom, tags: zoom }
 - { role: keybase, tags: keybase }
+- { role: openh264, tags: openh264 }

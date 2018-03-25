@@ -33,3 +33,7 @@ zoom_url: "https://zoom.us/client/latest/zoom_x86_64.rpm"
 
 # keybase
 keybase_url: "https://prerelease.keybase.io/keybase_amd64.rpm"
+
+# rpmfusion
+rpmfusion_free: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-27.noarch.rpm"
+rpmfusion_nonfree: "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-27.noarch.rpm"
