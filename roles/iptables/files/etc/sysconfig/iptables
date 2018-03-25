@@ -5,14 +5,18 @@
 -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 -A INPUT -p icmp -j ACCEPT
 -A INPUT -i lo -j ACCEPT
+-A INPUT -i br+ -j ACCEPT
 -A INPUT -p tcp -m state --state NEW -m tcp --dport 8000 -j ACCEPT
--A INPUT -m limit --limit 1/s -j LOG --log-prefix "iptables dropped input packets " --log-level 7
+-A INPUT -m limit --limit 1/s -j LOG --log-prefix "iptables dropped input " --log-level 7
 -A INPUT -j REJECT --reject-with icmp-host-prohibited
--A FORWARD -m limit --limit 1/s -j LOG --log-prefix "iptables dropped forward packets " --log-level 7
+-A FORWARD -i br+ -j ACCEPT
+-A FORWARD -o br+ -j ACCEPT
+-A FORWARD -m limit --limit 1/s -j LOG --log-prefix "iptables dropped forward " --log-level 7
 -A FORWARD -j REJECT --reject-with icmp-host-prohibited
 -A OUTPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 -A OUTPUT -p icmp -j ACCEPT
 -A OUTPUT -o lo -j ACCEPT
+-A OUTPUT -o br+ -j ACCEPT
 -A OUTPUT -p tcp -m state --state NEW -m tcp --dport 80 -j ACCEPT
 -A OUTPUT -p tcp -m state --state NEW -m tcp --dport 443 -j ACCEPT
 -A OUTPUT -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT
@@ -29,6 +33,6 @@
 -A OUTPUT -d 192.168.10.120/32 -p udp -m state --state NEW -m udp --dport 53 -j ACCEPT
 -A OUTPUT -d 8.8.8.8/32 -p udp -m state --state NEW -m udp --dport 53 -j ACCEPT
 -A OUTPUT -d 8.8.4.4/32 -p udp -m state --state NEW -m udp --dport 53 -j ACCEPT
--A OUTPUT -m limit --limit 1/s -j LOG --log-prefix "iptables dropped output packets " --log-level 7
+-A OUTPUT -m limit --limit 1/s -j LOG --log-prefix "iptables dropped output " --log-level 7
 -A OUTPUT -j REJECT --reject-with icmp-host-prohibited
 COMMIT
