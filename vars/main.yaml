@@ -20,6 +20,7 @@ packages_common:
   - f27-backgrounds-extras-gnome
   - ncdu
   - jq
+  - strace
   - "@Development Tools"
 
 # dropbox
