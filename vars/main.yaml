@@ -21,6 +21,7 @@ packages_common:
   - ncdu
   - jq
   - strace
+  - vinagre
   - "@Development Tools"
 
 # dropbox
