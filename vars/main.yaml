@@ -21,7 +21,8 @@ packages_common:
   - ncdu
   - jq
   - strace
-  - vinagre
+  - remmina
+  - remmina-plugins-rdp
   - "@Development Tools"
 
 # dropbox
