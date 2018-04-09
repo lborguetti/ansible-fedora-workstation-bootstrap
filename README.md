@@ -42,3 +42,4 @@ make ansible-playbook "playbook=lo" "tags=packages"
 - { role: keybase, tags: keybase }
 - { role: openh264, tags: openh264 }
 - { role: flash-player, tags: flash-player }
+- { role: spotify, tags: spotify }

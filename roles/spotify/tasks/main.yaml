@@ -1,0 +1,13 @@
+---
+- name: Ensure install dnf-plugins-core
+  dnf:
+    name: dnf-plugins-core
+    state: present
+
+- name: Ensure install spotify repository
+  command: dnf config-manager --set-enabled --add-repo http://negativo17.org/repos/fedora-spotify.repo
+
+- name: Ensure install spotify
+  dnf:
+    name: spotify
+    state: present
