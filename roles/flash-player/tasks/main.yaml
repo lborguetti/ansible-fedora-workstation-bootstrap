@@ -1,0 +1,12 @@
+---
+- name: Ensure install flash-player repository
+  dnf:
+    name: "{{ flash_player_url }}"
+    state: present
+
+- name: Ensure install flash-player for linux
+  dnf:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ flash_player_packages }}"

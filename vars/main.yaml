@@ -40,3 +40,11 @@ keybase_url: "https://prerelease.keybase.io/keybase_amd64.rpm"
 # rpmfusion
 rpmfusion_free: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-27.noarch.rpm"
 rpmfusion_nonfree: "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-27.noarch.rpm"
+
+# flash-player
+flash_player_url: "http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm"
+flash_player_packages:
+  - flash-plugin
+  - alsa-plugins-pulseaudio
+  - libcurl
+
