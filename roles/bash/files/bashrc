@@ -21,6 +21,10 @@ export GOROOT=/usr/local/go
 export GOPATH="$HOME/projects/go1.9.2-workspace/"
 export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
 
+# NASH
+NASHROOT="$HOME/nashroot/"
+export PATH="$PATH:$NASHROOT/bin"
+
 # vpn
 alias vpn="sudo openvpn --cd $HOME/.config/openvpn --config rohan.ovpn"
 

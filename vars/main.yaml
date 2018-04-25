@@ -23,6 +23,7 @@ packages_common:
   - strace
   - remmina
   - remmina-plugins-rdp
+  - gnome-shell-extension-system-monitor-applet
   - "@Development Tools"
 
 # dropbox
