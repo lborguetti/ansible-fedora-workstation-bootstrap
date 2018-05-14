@@ -1,6 +1,7 @@
 .DEFAULT_GOAL := setup
 
 tags ?= all
+playbook ?= lo
 
 guard-%:
 	@if [ "${${*}}" = "" ]; then \
