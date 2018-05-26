@@ -1,9 +1,4 @@
 ---
-- name: Ensure install tig
-  dnf:
-    name: tig
-    state: present
-
 - name: Install git config
   copy:
     src: gitconfig

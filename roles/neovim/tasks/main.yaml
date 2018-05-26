@@ -1,9 +1,4 @@
 ---
-- name: Ensure install neovim
-  dnf:
-    name: neovim
-    state: present
-
 - name: Create directory to install vim-plug
   file:
     path: "{{ home_path }}/.local/share/nvim/site/autoload/"

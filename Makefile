@@ -11,10 +11,8 @@ guard-%:
 .PHONY: setup
 setup:
 	@echo "Ensure ansible install"
-	@sudo dnf -y install ansible \
-		python2-rpm \
-		libselinux-python
+	@doas pkg_add ansible
 
 .PHONY: ansible-playbook
-ansible-playbook: guard-playbook
+ansible-playbook:
 	@ansible-playbook $(playbook).yaml -t $(tags)

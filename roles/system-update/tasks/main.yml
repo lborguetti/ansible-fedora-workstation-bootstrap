@@ -1,8 +1,4 @@
-- name: upgrade all packages
-  dnf:
-    name: "*"
+- name: Update all packages on the system
+  openbsd_pkg:
+    name: '*'
     state: latest
-
-- name: Autoremove unneeded packages installed as dependencies
-  dnf:
-    autoremove: yes

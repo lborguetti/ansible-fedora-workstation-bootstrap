@@ -1,12 +1,4 @@
 ---
-- name: Ensure install powerline and powerline-fonts
-  dnf:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - powerline
-    - powerline-fonts
-
 - name: Install bash config
   copy:
     src: "bashrc"
