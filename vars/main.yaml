@@ -23,3 +23,8 @@ packages_common:
   - openvpn--
   - remmina
   - tig
+  - powerline-fonts
+  - inconsolata-font
+  - ubuntu-fonts
+  - freefont-ttf
+  - xsel
