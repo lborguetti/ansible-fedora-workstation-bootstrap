@@ -1,8 +1,9 @@
 [user]
     name = Luciano Antonio Borguetti Faustino
     email = lucianoborguetti@gmail.com
+	signingkey = B8B9533CE294F989
 [commit]
-    gpgsign = false
+	gpgsign = true
 [core]
     editor = nvim
 [alias]
@@ -35,3 +36,5 @@
     prompt = false
 [diff]
     tool = vimdiff
+[gpg]
+	program = gpg2
