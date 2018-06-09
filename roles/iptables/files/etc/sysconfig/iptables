@@ -32,8 +32,8 @@
 -A OUTPUT -d 54.191.67.53/32   -p udp -m state --state NEW -m udp --dport 1205 -j ACCEPT
 -A OUTPUT -d 192.168.10.99/32  -p udp -m state --state NEW -m udp --dport 67 -j ACCEPT
 -A OUTPUT -d 192.168.60.254/32 -p udp -m state --state NEW -m udp --dport 67 -j ACCEPT
--A OUTPUT -d 192.168.0.1/32    -p udp -m state --state NEW -m udp --dport 67 -j ACCEPT
--A OUTPUT -d 192.168.0.1/32    -p udp -m state --state NEW -m udp --dport 53 -j ACCEPT
+-A OUTPUT -d 192.168.1.1/32    -p udp -m state --state NEW -m udp --dport 67 -j ACCEPT
+-A OUTPUT -d 192.168.1.1/32    -p udp -m state --state NEW -m udp --dport 53 -j ACCEPT
 -A OUTPUT -d 192.168.10.120/32 -p udp -m state --state NEW -m udp --dport 53 -j ACCEPT
 -A OUTPUT -d 8.8.8.8/32 -p udp -m state --state NEW -m udp --dport 53 -j ACCEPT
 -A OUTPUT -d 8.8.4.4/32 -p udp -m state --state NEW -m udp --dport 53 -j ACCEPT

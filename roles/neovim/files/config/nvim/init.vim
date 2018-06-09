@@ -4,8 +4,8 @@ call plug#begin('~/.local/share/nvim/site/plugged')
 
   Plug 'lifepillar/vim-solarized8'
   Plug 'Lokaltog/vim-easymotion'
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
+  "Plug 'vim-airline/vim-airline'
+  "Plug 'vim-airline/vim-airline-themes'
   Plug 'kien/ctrlp.vim'
   Plug 'godlygeek/tabular'
   Plug 'scrooloose/nerdcommenter'
@@ -24,13 +24,13 @@ call plug#end()
 " Plugins  Settings {
 
   " Settings for vim-airline {
-  set laststatus=2
-  let g:airline_theme = 'solarized'
-  let g:airline_powerline_fonts = 1
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline#extensions#tabline#fnamemod = ':t'
-  let g:airline#extensions#syntastic#enabled = 1
-  let g:airline#extensions#branch#enabled = 1
+  "set laststatus=2
+  "let g:airline_theme = 'solarized'
+  "let g:airline_powerline_fonts = 1
+  "let g:airline#extensions#tabline#enabled = 1
+  "let g:airline#extensions#tabline#fnamemod = ':t'
+  "let g:airline#extensions#syntastic#enabled = 1
+  "let g:airline#extensions#branch#enabled = 1
   "}
 
   " Settings for ctrlp {

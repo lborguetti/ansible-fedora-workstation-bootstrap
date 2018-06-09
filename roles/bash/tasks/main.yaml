@@ -1,11 +1,11 @@
 ---
-- name: Ensure install powerline and powerline-fonts
+- name: Ensure install bash
   dnf:
     name: "{{ item }}"
     state: present
   with_items:
-    - powerline
-    - powerline-fonts
+    - bash
+    - bash-completion
 
 - name: Install bash config
   copy:
