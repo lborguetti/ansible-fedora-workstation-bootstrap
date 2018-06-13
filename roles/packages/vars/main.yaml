@@ -3,6 +3,7 @@ packages_common:
   - "@Development Tools"
   - f28-backgrounds-extras-gnome
   - fuse-encfs
+  - gimp
   - git
   - git-extras
   - google-noto-mono-fonts
