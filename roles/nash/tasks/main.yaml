@@ -1,0 +1,46 @@
+---
+- name: Create directory nashroot and nashpath
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+  with_items:
+    - "{{ nash_path }}"
+    - "{{ nash_root }}"
+  become: no
+
+- name: Clone nash repository
+  git:
+    repo: "{{ nash_repo }}"
+    dest: "{{ golang_path }}/src/github.com/NeowayLabs/nash"
+    version: "{{ nash_version }}"
+  become: no
+
+- name: Ensure install nash
+  shell: |
+    PATH=$PATH:$GOROOT/bin
+    export PATH
+    make -e install
+  args:
+    chdir: "{{ golang_path }}/src/github.com/NeowayLabs/nash"
+  environment:
+    NASHPATH: "{{ nash_path }}"
+    NASHROOT: "{{ nash_root }}"
+    GOPATH: "{{ golang_path }}"
+    GOROOT: "{{ golang_root }}"
+  become: no
+
+- name: Install nash init
+  template:
+    src: "init.j2"
+    dest: "{{ nash_path }}/init"
+  become: no
+
+- name: Install nash configs
+  copy:
+    src: "{{ item }}"
+    dest: "{{ nash_path }}/{{ item }}"
+  with_items:
+    - colors.sh
+    - prompt.sh
+  become: no

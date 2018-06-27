@@ -3,3 +3,11 @@ home_path: "{{ lookup('env', 'HOME') }}"
 conf_path: "{{ home_path }}/.config"
 
 user: "{{ lookup('env', 'USER') }}"
+
+golang_version: "1.10.3"
+golang_linux_checksum: fa1b0e45d3b647c252f51f5e1204aba049cde4af177ef9f2181f43004f901035
+golang_path: "{{ home_path }}/projects/go{{ golang_version}}-workspace"
+golang_root: "{{ home_path }}/.local/share/go"
+
+nash_path: "{{ home_path }}/.config/nash"
+nash_root: "{{ home_path }}/.local/share/nash"

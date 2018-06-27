@@ -21,7 +21,7 @@
     - bash-completion
 
 - name: Install bash config
-  copy:
-    src: "bashrc"
+  template:
+    src: "bashrc.j2"
     dest: "{{ home_path }}/.bashrc"
   become: no
