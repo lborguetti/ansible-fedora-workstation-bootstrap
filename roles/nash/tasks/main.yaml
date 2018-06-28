@@ -36,6 +36,11 @@
     dest: "{{ nash_path }}/init"
   become: no
 
+- name: Install nash profile
+  copy:
+    src: etc/profile.d/nash.sh
+    dest: /etc/profile.d/nash.sh
+
 - name: Install nash configs
   copy:
     src: "{{ item }}"
