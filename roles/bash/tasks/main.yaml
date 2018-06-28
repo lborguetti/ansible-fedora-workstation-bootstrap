@@ -1,14 +1,27 @@
 ---
-- name: Ensure install powerline and powerline-fonts
+- name: Create directory ~/bin
+  file:
+    path: "{{ home_path }}/bin"
+    state: directory
+    mode: 0755
+  become: no
+
+- name: Install git-prompt.sh config
+  copy:
+    src: "git-prompt.sh"
+    dest: "{{ home_path }}/bin/git-prompt.sh"
+  become: no
+
+- name: Ensure install bash
   dnf:
     name: "{{ item }}"
     state: present
   with_items:
-    - powerline
-    - powerline-fonts
+    - bash
+    - bash-completion
 
 - name: Install bash config
-  copy:
-    src: "bashrc"
+  template:
+    src: "bashrc.j2"
     dest: "{{ home_path }}/.bashrc"
   become: no

@@ -11,6 +11,8 @@
 -A INPUT -j REJECT --reject-with icmp-host-prohibited
 -A FORWARD -i br+ -j ACCEPT
 -A FORWARD -o br+ -j ACCEPT
+-A FORWARD -i docker+ -j ACCEPT
+-A FORWARD -o docker+ -j ACCEPT
 -A FORWARD -m limit --limit 1/s -j LOG --log-prefix "iptables dropped forward " --log-level 7
 -A FORWARD -j REJECT --reject-with icmp-host-prohibited
 -A OUTPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
@@ -19,11 +21,10 @@
 -A OUTPUT -o br+ -j ACCEPT
 -A OUTPUT -p tcp -m state --state NEW -m tcp --dport 80 -j ACCEPT
 -A OUTPUT -p tcp -m state --state NEW -m tcp --dport 443 -j ACCEPT
+-A OUTPUT -p tcp -m state --state NEW -m tcp --dport 843 -j ACCEPT
 -A OUTPUT -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT
 -A OUTPUT -p tcp -m state --state NEW -m tcp --dport 2222 -j ACCEPT
 -A OUTPUT -d 10.107.1.120/32 -p tcp -m state --state NEW -m tcp --dport 943 -j ACCEPT
--A OUTPUT -d 10.107.1.120/32 -p tcp -m state --state NEW -m tcp --dport 843 -j ACCEPT
--A OUTPUT -d 40.79.67.68/32 -p tcp -m state --state NEW -m tcp --dport 843 -j ACCEPT
 -A OUTPUT -d 192.168.10.0/24 -p tcp -m state --state NEW -m tcp --match multiport --dports 1024:35535 -j ACCEPT
 -A OUTPUT -d 192.168.111.0/24 -p tcp -m state --state NEW -m tcp --match multiport --dports 1024:35535 -j ACCEPT
 -A OUTPUT -d 192.168.110.0/24 -p tcp -m state --state NEW -m tcp --match multiport --dports 1024:35535 -j ACCEPT
@@ -33,8 +34,8 @@
 -A OUTPUT -d 54.191.67.53/32   -p udp -m state --state NEW -m udp --dport 1205 -j ACCEPT
 -A OUTPUT -d 192.168.10.99/32  -p udp -m state --state NEW -m udp --dport 67 -j ACCEPT
 -A OUTPUT -d 192.168.60.254/32 -p udp -m state --state NEW -m udp --dport 67 -j ACCEPT
--A OUTPUT -d 192.168.0.1/32    -p udp -m state --state NEW -m udp --dport 67 -j ACCEPT
--A OUTPUT -d 192.168.0.1/32    -p udp -m state --state NEW -m udp --dport 53 -j ACCEPT
+-A OUTPUT -d 192.168.1.1/32    -p udp -m state --state NEW -m udp --dport 67 -j ACCEPT
+-A OUTPUT -d 192.168.1.1/32    -p udp -m state --state NEW -m udp --dport 53 -j ACCEPT
 -A OUTPUT -d 192.168.10.120/32 -p udp -m state --state NEW -m udp --dport 53 -j ACCEPT
 -A OUTPUT -d 8.8.8.8/32 -p udp -m state --state NEW -m udp --dport 53 -j ACCEPT
 -A OUTPUT -d 8.8.4.4/32 -p udp -m state --state NEW -m udp --dport 53 -j ACCEPT

@@ -1,0 +1,21 @@
+---
+packages_common:
+  - "@Development Tools"
+  - f28-backgrounds-extras-gnome
+  - fuse-encfs
+  - gimp
+  - git
+  - git-extras
+  - google-noto-mono-fonts
+  - iftop
+  - jq
+  - keepassxc
+  - ncdu
+  - ngrep
+  - nmap
+  - nmap-ncat
+  - ranger
+  - remmina
+  - remmina-plugins-rdp
+  - strace
+  - tcpdump

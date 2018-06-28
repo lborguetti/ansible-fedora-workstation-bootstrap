@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := setup
 
 tags ?= all
-playbook ?= lo
+playbook ?= 127.0.0.1
 
 guard-%:
 	@if [ "${${*}}" = "" ]; then \

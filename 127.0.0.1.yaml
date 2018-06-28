@@ -9,17 +9,18 @@
   roles:
     - { role: system-update, tags: system-update }
     - { role: packages, tags: packages }
-    - { role: iptables, tags: iptables }
     - { role: bash, tags: bash }
-    - { role: tmux, tags: tmux }
-    - { role: neovim, tags: neovim }
+    - { role: chrome, tags: chrome }
     - { role: docker, tags: docker }
-    - { role: golang, tags: golang }
-    - { role: git, tags: git }
     - { role: dropbox, tags: dropbox }
-    - { role: skype, tags: skype }
-    - { role: zoom, tags: zoom }
+    - { role: git, tags: git }
+    - { role: golang, tags: golang }
+    - { role: iptables, tags: iptables }
     - { role: keybase, tags: keybase }
-    - { role: openh264, tags: openh264 }
-    - { role: flash-player, tags: flash-player }
+    - { role: nash, tags: nash}
+    - { role: neovim, tags: neovim }
+    - { role: skype, tags: skype }
     - { role: spotify, tags: spotify }
+    - { role: terminal, tags: terminal }
+    - { role: tmux, tags: tmux }
+    - { role: zoom, tags: zoom }

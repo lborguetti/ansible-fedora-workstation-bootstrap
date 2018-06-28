@@ -5,24 +5,23 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
+# Prompt
+source $HOME/bin/git-prompt.sh
+export PS1='┌─[\[\e[38;5;32m\]\w\[\e[0m\]\[\e[38;5;240m\]$(__git_ps1 " (%s)")\[\e[0m\]]\n└─╼ '
+
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 export SYSTEMD_PAGER=
 
-# User specific aliases and functions
-if [ -f `which powerline-daemon` ]; then
-  powerline-daemon -q
-  POWERLINE_BASH_CONTINUATION=1
-  POWERLINE_BASH_SELECT=1
-  . /usr/share/powerline/bash/powerline.sh
-fi
-
 # GO
-export GOROOT=/usr/local/go
-export GOPATH="$HOME/projects/go1.9.2-workspace/"
+export GOROOT="{{ golang_root }}"
+export GOPATH="{{ golang_path }}"
 export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
 
 # NASH
-NASHROOT="$HOME/nashroot/"
+NASHROOT="{{ nash_root }}"
+NASHPATH="{{ nash_path }}"
+export NASHROOT
+export NASHPATH
 export PATH="$PATH:$NASHROOT/bin"
 
 # vpn
@@ -32,10 +31,14 @@ alias vpn="sudo openvpn --cd $HOME/.config/openvpn --config rohan.ovpn"
 alias myip='dig +short www.google.com @8.8.8.8'
 
 # encfs
-alias encfs_mount="ENCFS6_CONFIG=$HOME/.encfs6.xml encfs $HOME/Dropbox/Work $HOME/Private"
+alias encfs_mount="ENCFS6_CONFIG=$HOME/.config/encfs6.xml encfs $HOME/Dropbox/Work $HOME/Private"
 
 # nvim
 alias vim="nvim"
 
 # nvim /etc/hosts
 alias h="sudo nvim /etc/hosts"
+
+# pbcopy/pbpaste
+alias pbcopy='xsel --clipboard --input'
+alias pbpaste='xsel --clipboard --output'
