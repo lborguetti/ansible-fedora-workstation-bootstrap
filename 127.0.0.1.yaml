@@ -19,6 +19,7 @@
     - { role: keybase, tags: keybase }
     - { role: nash, tags: nash}
     - { role: neovim, tags: neovim }
+    - { role: openh264, tags: openh264 }
     - { role: skype, tags: skype }
     - { role: spotify, tags: spotify }
     - { role: terminal, tags: terminal }

@@ -1,0 +1,29 @@
+---
+- name: Ensure install dnf-plugins-core
+  dnf:
+    name: dnf-plugins-core
+    state: present
+
+- name: Ensure install openh264 repository
+  command: dnf config-manager --set-enabled fedora-cisco-openh264
+
+- name: Ensure install rpmfusion repository
+  dnf:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ rpmfusion_free }}"
+    - "{{ rpmfusion_nonfree }}"
+
+- name: Ensure install openh264/codecs
+  dnf:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - gstreamer1-libav
+    - gstreamer1-vaapi
+    - gstreamer1-plugins-good
+    - gstreamer1-plugins-good-extras
+    - gstreamer1-plugins-ugly
+    - gstreamer1-plugin-openh264
+    - mozilla-openh264
