@@ -21,9 +21,10 @@
     state: present
   with_items:
     - gstreamer1-libav
-    - gstreamer1-vaapi
+    - gstreamer1-plugin-openh264
     - gstreamer1-plugins-good
     - gstreamer1-plugins-good-extras
     - gstreamer1-plugins-ugly
-    - gstreamer1-plugin-openh264
+    - gstreamer1-vaapi
     - mozilla-openh264
+    - openh264-devel
