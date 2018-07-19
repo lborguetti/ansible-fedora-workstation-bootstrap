@@ -1,6 +1,7 @@
 ---
 packages_common:
   - "@Development Tools"
+  - dos2unix
   - f28-backgrounds-extras-gnome
   - fuse-encfs
   - gimp
