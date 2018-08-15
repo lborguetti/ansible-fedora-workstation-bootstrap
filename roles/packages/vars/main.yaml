@@ -3,6 +3,7 @@ packages_common:
   - "@C Development Tools and Libraries"
   - "@Development Tools"
   - "@RPM Development Tools"
+  - dconf-editor
   - dos2unix
   - f28-backgrounds-extras-gnome
   - fuse-encfs
@@ -17,6 +18,8 @@ packages_common:
   - ngrep
   - nmap
   - nmap-ncat
+  - pcp
+  - pcp-webapi
   - ranger
   - remmina
   - remmina-plugins-rdp
