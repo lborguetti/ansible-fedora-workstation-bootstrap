@@ -1,0 +1,5 @@
+---
+- name: Ensure install slack for linux
+  dnf:
+    name: "{{ slack_url }}"
+    state: present

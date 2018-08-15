@@ -21,6 +21,7 @@
     - { role: neovim, tags: neovim }
     - { role: openh264, tags: openh264 }
     - { role: skype, tags: skype }
+    - { role: slack, tags: slack }
     - { role: spotify, tags: spotify }
     - { role: terminal, tags: terminal }
     - { role: tmux, tags: tmux }
