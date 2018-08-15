@@ -7,7 +7,7 @@
     - tmux
 
 - name: Install tmux config
-  copy:
-    src: "tmux.conf"
+  template:
+    src: "tmux.conf.j2"
     dest: "{{ home_path }}/.tmux.conf"
   become: no
