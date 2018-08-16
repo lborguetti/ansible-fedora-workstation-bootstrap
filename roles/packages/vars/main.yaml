@@ -25,5 +25,5 @@ packages_common:
   - remmina-plugins-rdp
   - rpmdevtools
   - strace
-  - systat
+  - sysstat
   - tcpdump
