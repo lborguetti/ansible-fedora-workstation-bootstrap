@@ -30,22 +30,41 @@
     GOROOT: "{{ golang_root }}"
   become: no
 
-- name: Install nash init
+- name: Copy nash init
   template:
-    src: "init.j2"
+    src: "config/nash/init.j2"
     dest: "{{ nash_path }}/init"
   become: no
 
-- name: Install nash profile
-  copy:
-    src: etc/profile.d/nash.sh
+- name: Copy nash profile to all users
+  template:
+    src: etc/profile.d/nash.sh.j2
     dest: /etc/profile.d/nash.sh
 
-- name: Install nash configs
+- name: Copy nash alias, colors, prompt, etc.
   copy:
-    src: "{{ item }}"
+    src: "config/nash/{{ item }}"
     dest: "{{ nash_path }}/{{ item }}"
   with_items:
+    - aliases.sh
     - colors.sh
     - prompt.sh
+  become: no
+
+- name: Create directory ~/bin
+  file:
+    path: "{{ home_path }}/bin"
+    state: directory
+    mode: 0755
+  become: no
+
+- name: Copy small utils
+  copy:
+    src: "bin/{{ item }}"
+    dest: "{{ home_path }}/bin/{{ item }}"
+    mode: 0755
+  with_items:
+    - exec
+    - pbcopy
+    - pbpaste
   become: no

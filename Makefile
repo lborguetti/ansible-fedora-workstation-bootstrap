@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := setup
 
 tags ?= all
-playbook ?= 127.0.0.1
+playbook ?= localhost
 
 guard-%:
 	@if [ "${${*}}" = "" ]; then \
@@ -18,4 +18,4 @@ setup:
 
 .PHONY: ansible-playbook
 ansible-playbook: guard-playbook
-	@ansible-playbook $(playbook).yaml -t $(tags)
+	@cd ansible && ansible-playbook $(playbook).yaml -t $(tags)
