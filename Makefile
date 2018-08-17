@@ -18,4 +18,4 @@ setup:
 
 .PHONY: ansible-playbook
 ansible-playbook: guard-playbook
-	@cd ansible && ansible-playbook $(playbook).yaml -t $(tags)
+	@cd ansible && ansible-playbook $(playbook).yaml -t $(tags) $(args)
