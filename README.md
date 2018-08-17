@@ -1,8 +1,6 @@
 localhost
 ---
 
-![](https://raw.githubusercontent.com/lborguetti/localhost/master/assets/localhos.jpg)
-
 This project installs and configures most of the software I use on my Fedora Workstation.
 
 ## Installation
@@ -28,3 +26,5 @@ make ansible-playbook "playbook=lo" "tags=packages"
 ## Ansible roles/tags availables
 
 See `ansible/localhost.yaml`
+
+![](https://raw.githubusercontent.com/lborguetti/localhost/master/assets/localhost.jpg)
