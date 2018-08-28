@@ -19,3 +19,7 @@ setup:
 .PHONY: ansible-playbook
 ansible-playbook: guard-playbook
 	@cd ansible && ansible-playbook $(playbook).yaml -t $(tags) $(args)
+
+.PHONY: test
+test: guard-playbook
+	@cd ansible && ansible-playbook $(playbook).yaml -t $(tags) --syntax-check
