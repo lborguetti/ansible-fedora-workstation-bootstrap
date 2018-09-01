@@ -14,13 +14,13 @@ So, just run `make` for install ansible.
 To installs and configures:
 
 ```shell
-make ansible-playbook "playbook=lo"
+make ansible-playbook "playbook=localhost"
 ```
 
 You can select one of the ansible role using tags, like that:
 
 ```shell
-make ansible-playbook "playbook=lo" "tags=packages"
+make ansible-playbook "playbook=localhost" "tags=packages"
 ```
 
 ## Ansible roles/tags availables
