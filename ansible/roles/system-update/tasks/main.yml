@@ -1,8 +1,0 @@
-- name: upgrade all packages
-  dnf:
-    name: "*"
-    state: latest
-
-- name: Autoremove unneeded packages installed as dependencies
-  dnf:
-    autoremove: yes

@@ -1,0 +1,3 @@
+# fedora-base
+- src: https://github.com/lborguetti/ansible-role-fedora-base
+  version: master

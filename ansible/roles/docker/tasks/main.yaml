@@ -4,8 +4,14 @@
     name: dnf-plugins-core
     state: present
 
+- name: Check if docker repository exists
+  stat:
+    path: /etc/yum.repos.d/google-chrome.repo
+  register: docker_repo
+
 - name: Ensure install docker repository
   command: dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+  when: not docker_repo.stat.exists
 
 - name: Make sure docker from distro is not installed
   dnf:
@@ -25,10 +31,3 @@
   with_items:
     - docker-ce
     - docker-compose
-
-- name: Ensure your user in the docker group
-  user:
-    name: "{{ user }}"
-    groups: docker
-    append: yes
-

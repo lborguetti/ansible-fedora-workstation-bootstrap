@@ -3,7 +3,7 @@ include help.mk
 .DEFAULT_GOAL := help
 
 tags ?= all
-playbook ?= localhost
+playbook ?= playbook
 
 guard-%:
 	@if [ "${${*}}" = "" ]; then \
@@ -13,16 +13,19 @@ guard-%:
 
 .PHONY: setup
 setup: ##@setup Build and copy the tools needed to run this project.
-	@echo "Ensure ansible install"
-	@sudo dnf -y install ansible \
-		python2-rpm \
-		libselinux-python
+	@echo "Ensure ansible && molecule install"
+	sudo dnf -y install python-virtualenv
+	virtualenv --no-site-packages .venv
+	source .venv/bin/activate
+	pip install ansible
 
 .PHONY: ansible-playbook
 ansible-playbook: guard-playbook ##@ansible-playbook Execute Ansible playbooks.
-	@cd ansible && ansible-playbook $(playbook).yaml -t $(tags) $(args)
+	source .venv/bin/activate)
+	cd ansible && ansible-galaxy requirements.yml && ansible-playbook $(playbook).yaml -t $(tags) $(args)
 
 .PHONY: test
 test: guard-playbook ##@test Execute tests.
 	@echo "Execute Ansible playbook syntax check"
-	@cd ansible && ansible-playbook $(playbook).yaml -t $(tags) --syntax-check
+	source .venv/bin/activate)
+	cd ansible && ansible-galaxy requirements.yml && ansible-playbook $(playbook).yaml -t $(tags) --syntax-check

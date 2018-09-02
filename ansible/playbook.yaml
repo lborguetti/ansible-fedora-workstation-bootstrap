@@ -7,15 +7,13 @@
     - vars/main.yaml
 
   roles:
-    - { role: system-update, tags: system-update }
-    - { role: packages, tags: packages }
+    - { role: ansible-role-fedora-base }
     - { role: bash, tags: bash }
     - { role: chrome, tags: chrome }
     - { role: docker, tags: docker }
     - { role: dropbox, tags: dropbox }
     - { role: git, tags: git }
     - { role: golang, tags: golang }
-    - { role: iptables, tags: iptables }
     - { role: keybase, tags: keybase }
     - { role: nash, tags: nash}
     - { role: neovim, tags: neovim }
