@@ -1,8 +1,0 @@
----
-- name: Ensure Google chrome repo present
-  copy: src=google-chrome.repo
-        dest=/etc/yum.repos.d/
-        owner=root group=root mode=0644
-
-- name: Ensure Google chrome present
-  dnf: name={{ chrome_package }}

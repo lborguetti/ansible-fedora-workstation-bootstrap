@@ -15,7 +15,7 @@ guard-%:
 setup: ##@setup Build and copy the tools needed to run this project.
 	@echo "Ensure ansible && molecule install"
 	sudo dnf -y install python-virtualenv
-	virtualenv --no-site-packages .venv
+	virtualenv --system-site-packages .venv
 	source .venv/bin/activate
 	pip install ansible
 

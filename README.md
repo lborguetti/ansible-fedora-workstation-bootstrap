@@ -28,3 +28,7 @@ make ansible-playbook "playbook=localhost" "tags=packages"
 See `ansible/localhost.yaml`
 
 ![](https://raw.githubusercontent.com/lborguetti/localhost/master/assets/localhost.jpg)
+
+- disable selinux
+- allow sudo without password
+- display day/night mode

@@ -6,7 +6,7 @@
 
 - name: Check if docker repository exists
   stat:
-    path: /etc/yum.repos.d/google-chrome.repo
+    path: /etc/yum.repos.d/docker
   register: docker_repo
 
 - name: Ensure install docker repository
