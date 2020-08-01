@@ -1,0 +1,55 @@
+---
+# packages to install
+packages:
+  - "@C Development Tools and Libraries"
+  - "@Development Tools"
+  - "@RPM Development Tools"
+  - VirtualBox
+  - bpftrace
+  - cloc
+  - dconf-editor
+  - docker-compose
+  - dos2unix
+  - dropbox
+  - emacs
+  - freetype-freeworld
+  - fuse-encfs
+  - gimp
+  - git
+  - git-extras
+  - gnome-tweaks
+  - google-chrome-stable
+  - gstreamer1-libav
+  - gstreamer1-plugin-openh264
+  - gstreamer1-plugins-good
+  - gstreamer1-plugins-good-extras
+  - gstreamer1-plugins-ugly
+  - gstreamer1-vaapi
+  - iftop
+  - iridium-browser
+  - jq
+  - keepassxc
+  - links
+  - moby-engine
+  - mozilla-openh264
+  - mypaint
+  - nautilus-dropbox
+  - ncdu
+  - ngrep
+  - nmap
+  - nmap-ncat
+  - openh264-devel
+  - pcp
+  - pcp-webapi
+  - pwgen
+  - ranger
+  - remmina
+  - remmina-plugins-rdp
+  - rpmdevtools
+  - smem
+  - spotify
+  - strace
+  - sysstat
+  - tcpdump
+  - texlive-latex
+  - tig

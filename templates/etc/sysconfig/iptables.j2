@@ -1,0 +1,44 @@
+*mangle
+:PREROUTING ACCEPT [0:0]
+:INPUT ACCEPT [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+:POSTROUTING ACCEPT [0:0]
+--append FORWARD --in-interface br+      --jump ACCEPT --match comment --comment "default br+"
+--append FORWARD --in-interface docker+  --jump ACCEPT --match comment --comment "default docker+"
+--append FORWARD --in-interface lo       --jump ACCEPT --match comment --comment "default: lo"
+--append FORWARD --out-interface lo      --jump ACCEPT --match comment --comment "default: lo"
+--append FORWARD --protocol icmp         --jump ACCEPT --match comment --comment "default: icmp"
+--append FORWARD --match state --state RELATED,ESTABLISHED --jump ACCEPT --match comment --comment "default: related,established"
+--append FORWARD --match limit --limit 1/s --jump LOG --log-prefix "iptables dropped forward " --log-level 7 --match comment --comment "default: log"
+COMMIT
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT DROP [0:0]
+
+{% for r in inbound if "name" in r       %}
+--append INPUT --protocol "{{ r.protocol }}" --match state --state NEW --source "{{ r.source | join(',') }}" --match multiport --dport "{{ r.port | join(',') }}" --jump ACCEPT --match comment --comment "inbound: {{ r.name }}"
+{% endfor                                %}
+
+--append INPUT --in-interface br+     --jump ACCEPT --match comment --comment "default: br+"
+--append INPUT --in-interface docker+ --jump ACCEPT --match comment --comment "default: docker+"
+--append INPUT --in-interface lo      --jump ACCEPT --match comment --comment "default: lo"
+--append INPUT --protocol icmp        --jump ACCEPT --match comment --comment "default: icmp"
+--append INPUT --match state --state RELATED,ESTABLISHED --jump ACCEPT --match comment --comment "default: related, established"
+--append INPUT --match limit --limit 1/s --jump LOG --log-prefix "iptables dropped input " --log-level 7 --match comment --comment "default: log"
+--append INPUT --jump REJECT --reject-with icmp-host-prohibited --match comment --comment "default: reject"
+
+{% for r in outbound if "name" in r      %}
+--append OUTPUT --protocol "{{ r.protocol }}" --match state --state NEW --destination "{{ r.destination | join(',') }}" --match multiport --dports "{{ r.port | join(',') }}" --jump ACCEPT --match comment --comment "outbound: {{ r.name }}"
+{% endfor                                %}
+
+--append OUTPUT --out-interface br+     --jump ACCEPT --match comment --comment "default: br+"
+--append OUTPUT --out-interface docker+ --jump ACCEPT --match comment --comment "default: docker+"
+--append OUTPUT --out-interface lo      --jump ACCEPT --match comment --comment "default: lo"
+--append OUTPUT --protocol icmp         --jump ACCEPT --match comment --comment "default icmp"
+--append OUTPUT --match state --state RELATED,ESTABLISHED --jump ACCEPT --match comment --comment "default: related,established"
+--append OUTPUT --match limit --limit 1/s --jump LOG --log-prefix "iptables dropped output " --log-level 7 --match comment --comment "default: log"
+--append OUTPUT --jump REJECT --reject-with icmp-host-prohibited --match comment --comment "default: reject"
+
+COMMIT

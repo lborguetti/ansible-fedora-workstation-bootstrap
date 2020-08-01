@@ -22,6 +22,6 @@ HELP_FUN = \
 	print "\n"; }
 
 .PHONY: help
-help: ##@other Show this help.
+help: ##@other show this help.
 	@perl -e '$(HELP_FUN)' $(MAKEFILE_LIST)
 

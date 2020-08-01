@@ -1,0 +1,50 @@
+---
+inbound:
+  - name: http
+    port:
+      - 8000
+    protocol: tcp
+    source:
+      - 10.0.0.0/8
+      - 172.16.0.0/12
+      - 192.168.0.0/16
+
+outbound:
+  - name: dns
+    port:
+      - 53
+    protocol: udp
+    destination:
+      - 176.103.130.130/32
+      - 176.103.130.131/32
+
+  - name: dhcp
+    port:
+      - 67
+    protocol: udp
+    destination:
+      - 10.0.0.0/8
+      - 172.16.0.0/12
+      - 192.168.0.0/16
+
+  - name: ntp
+    port:
+      - 123
+    protocol: udp
+    destination:
+      - 0.0.0.0/0
+
+  - name: http/https
+    port:
+      - 80
+      - 443
+    protocol: tcp
+    destination:
+      - 0.0.0.0/0
+
+  - name: ssh
+    port:
+      - 22
+    protocol: tcp
+    destination:
+      - 0.0.0.0/0

@@ -1,34 +1,35 @@
-localhost
+ansible-fedora-workstation-bootstrap
 ---
 
 This project installs and configures most of the software I use on my Fedora Workstation.
 
-## Installation
+## Requirements
 
-Makefile simplify our life! I believe you agree with that =)
-
-The only dependency for running this project is ansible and I automated this installation step too.
-
-So, just run `make` for install ansible.
-
-To installs and configures:
+### Clone this repository
 
 ```shell
-make ansible-playbook "playbook=localhost"
+git clone https://github.com/lborguetti/ansible-fedora-workstation-bootstrap
 ```
 
-You can select one of the ansible role using tags, like that:
+### Install ansible (you could use virtualenv and pip).
 
 ```shell
-make ansible-playbook "playbook=localhost" "tags=packages"
+cd ansible-fedora-workstation-bootstrap
+sudo dnf install python3-virtualenv
+virtualenv --system-site-packages .venv
+source .venv/bin/activate
+pip install ansible
 ```
 
-## Ansible roles/tags availables
+### Provision
 
-See `ansible/localhost.yaml`
+```shell
+make provision
+```
 
-![](https://raw.githubusercontent.com/lborguetti/localhost/master/assets/localhost.jpg)
+You can select one of part of provisioning using tags. The tags available are
+`dotfiles`, `iptables`, `ipv6`, `nvim` and `packages`.
 
-- disable selinux
-- allow sudo without password
-- display day/night mode
+```shell
+make provision "tags=iptables"
+```

@@ -1,0 +1,34 @@
+---
+- hosts: all
+  connection: local
+  become: yes
+  become_method: sudo
+  become_user: root
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  vars_files:
+    - vars/main.yaml
+    - vars/packages.yaml
+    - vars/iptables.yaml
+
+  tasks:
+    - include_tasks: tasks/dotfiles.yaml
+      tags:
+        - dotfiles
+
+    - include_tasks: tasks/iptables.yaml
+      tags:
+        - iptables
+
+    - include_tasks: tasks/ipv6.yaml
+      tags:
+        - ipv6
+
+    - include_tasks: tasks/nvim.yaml
+      tags:
+        - dotfiles
+        - nvim
+
+    - include_tasks: tasks/packages.yaml
+      tags:
+        - packages

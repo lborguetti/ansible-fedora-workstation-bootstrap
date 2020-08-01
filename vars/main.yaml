@@ -1,0 +1,72 @@
+---
+home_path: "{{ lookup('env', 'HOME') }}"
+conf_path: "{{ home_path }}/.config"
+
+golang_version: "1.10.3"
+golang_linux_checksum: fa1b0e45d3b647c252f51f5e1204aba049cde4af177ef9f2181f43004f901035
+golang_path: "{{ home_path }}/projects/go{{ golang_version}}-workspace"
+golang_root: "{{ home_path }}/.local/share/go"
+
+# additional repositories
+repo_rpmfusion:
+  - "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_version }}.noarch.rpm"
+  - "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_version }}.noarch.rpm"
+repo_spotify_url: "https://negativo17.org/repos/fedora-spotify.repo"
+repo_iridium_url: "https://dl.iridiumbrowser.de/fedora_32/iridium-browser.repo"
+
+# third party packages
+package_keybase_url: "https://prerelease.keybase.io/keybase_amd64.rpm"
+package_zoom_url: "https://zoom.us/client/latest/zoom_x86_64.rpm"
+
+# defaults packages to install
+packages_common:
+  - "@C Development Tools and Libraries"
+  - "@Development Tools"
+  - "@RPM Development Tools"
+  - VirtualBox
+  - bpftrace
+  - cloc
+  - dconf-editor
+  - dos2unix
+  - dropbox
+  - emacs
+  - freetype-freeworld
+  - fuse-encfs
+  - gimp
+  - git
+  - git-extras
+  - gnome-tweaks
+  - google-chrome-stable
+  - gstreamer1-libav
+  - gstreamer1-plugin-openh264
+  - gstreamer1-plugins-good
+  - gstreamer1-plugins-good-extras
+  - gstreamer1-plugins-ugly
+  - gstreamer1-vaapi
+  - iftop
+  - iridium-browser
+  - jq
+  - keepassxc
+  - links
+  - mozilla-openh264
+  - mypaint
+  - nautilus-dropbox
+  - ncdu
+  - ngrep
+  - nmap
+  - nmap-ncat
+  - openh264-devel
+  - pcp
+  - pcp-webapi
+  - pwgen
+  - ranger
+  - remmina
+  - remmina-plugins-rdp
+  - rpmdevtools
+  - smem
+  - spotify
+  - strace
+  - sysstat
+  - tcpdump
+  - texlive-latex
+  - tig

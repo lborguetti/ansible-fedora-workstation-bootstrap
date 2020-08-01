@@ -1,0 +1,42 @@
+---
+- name: populate service facts
+  service_facts:
+  tags: iptables
+
+- name: ensure iptables present
+  dnf:
+    name: iptables-services
+    state: present
+  tags: iptables
+
+- name: copy iptables configs
+  template:
+    src: "etc/sysconfig/{{ item }}.j2"
+    dest: "/etc/sysconfig/{{ item }}"
+  with_items:
+    - iptables
+  register: iptables
+  tags: iptables
+
+- name: Check if firewalld.service exists
+  stat:
+    path: /usr/lib/systemd/system/firewalld.service
+  register: firewalld
+  tags: iptables
+
+- name: disable firewalld service
+  systemd:
+    name: firewalld
+    state: stopped
+    enabled: false
+    masked: true
+  when: firewalld.stat.exists
+  tags: iptables
+
+- name: enable iptables services
+  systemd:
+    name: "{{ item.item }}"
+    enabled: true
+    state: "{{ (item.changed) | ternary('restarted', 'started') }}"
+  with_items: "{{ iptables.results }}"
+  tags: iptables
