@@ -4,6 +4,7 @@ packages:
   - "@C Development Tools and Libraries"
   - "@Development Tools"
   - "@RPM Development Tools"
+  - ShellCheck
   - VirtualBox
   - bpftrace
   - cloc
@@ -41,11 +42,13 @@ packages:
   - openh264-devel
   - pcp
   - pcp-webapi
+  - pulseeffects
   - pwgen
   - ranger
   - remmina
   - remmina-plugins-rdp
   - rpmdevtools
+  - setroubleshoot
   - smem
   - spotify
   - strace
