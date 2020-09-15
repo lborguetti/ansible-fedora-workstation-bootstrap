@@ -52,7 +52,7 @@ alias pbpaste='xsel --clipboard --output'
 alias venv='v=".venv/bin/activate"; if [ -e ${v} ]; then source ${v} ]; else echo "virtualenv not found in current dir"; fi'
 
 # system update/upgrade
-alias dnf-update="sudo dnf update --enablerepo google-chrome,fedora-cisco-openh264"
+alias dnf-update="sudo dnf update"
 
 # st
 alias st='st -f "Monospace-12"'
