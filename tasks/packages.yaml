@@ -1,35 +1,18 @@
 ---
-- name: install rpmfusion repositories
+- name: add/enable rpmfusion repositories [free, nonfree]
   dnf:
+    disable_gpg_check: true
     name: [ "{{ repo_rpmfusion | join(',') }}" ]
     state: present
   tags:
     - packages
-    - common
 
-- name: install spotify repository
-  get_url:
-    url: "{{ repo_spotify_url }}"
-    dest: "/etc/yum.repos.d/fedora-spotify.repo"
-    owner: root
-    group: root
-    mode: 0644
+- name: add/enable iridium repository
+  command: dnf config-manager --add-repo "{{ repo_iridium }}"
   tags:
     - packages
-    - common
 
-- name: install iridium repository
-  get_url:
-    url: "{{ repo_iridium_url }}"
-    dest: "/etc/yum.repos.d/iridium-browser.repo"
-    owner: root
-    group: root
-    mode: 0644
-  tags:
-    - packages
-    - common
-
-- name: install dropbox repository
+- name: add/enable dropbox repository
   copy:
     src: "etc/yum.repos.d/dropbox.repo"
     dest: "/etc/yum.repos.d/dropbox.repo"
@@ -38,40 +21,21 @@
     mode: 0644
   tags:
     - packages
-    - common
-
-- name: install fedora third party repository
-  dnf:
-    name: fedora-workstation-repositories
-    state: present
-  tags:
-    - packages
-    - common
 
 - name: install packages
   dnf:
     name: "{{ packages }}"
     state: present
-    enablerepo:
-      - fedora-cisco-openh264
-      - google-chrome
   tags:
     - packages
-    - common
 
-- name: install keybase
+- name: install third party packages [keybase, zoom]
   dnf:
-    name: "{{ package_keybase_url }}"
+    disable_gpg_check: true
+    name: [ "{{ package_third_party | join(',') }}" ]
     state: present
   tags:
-    - packages
     - keybase
-
-- name: install zoom
-  dnf:
-    name: "{{ package_zoom_url }}"
-    state: present
-  tags:
     - packages
     - zoom
 
@@ -81,4 +45,3 @@
     state: absent
   tags:
     - packages
-    - common

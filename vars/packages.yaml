@@ -1,12 +1,21 @@
 ---
+# additional repositories
+repo_rpmfusion:
+  - "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_version }}.noarch.rpm"
+  - "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_version }}.noarch.rpm"
+
+repo_iridium: "https://dl.iridiumbrowser.de/fedora_32/iridium-browser.repo"
+
 # packages to install
 packages:
   - "@C Development Tools and Libraries"
   - "@Development Tools"
   - "@RPM Development Tools"
+  - GoldenCheetah
   - ShellCheck
   - VirtualBox
   - bpftrace
+  - chromium
   - cloc
   - dconf-editor
   - docker-compose
@@ -19,7 +28,6 @@ packages:
   - git
   - git-extras
   - gnome-tweaks
-  - google-chrome-stable
   - gstreamer1-libav
   - gstreamer1-plugin-openh264
   - gstreamer1-plugins-good
@@ -31,6 +39,7 @@ packages:
   - jq
   - keepassxc
   - links
+  - lpf-spotify-client
   - moby-engine
   - mozilla-openh264
   - mypaint
@@ -50,9 +59,13 @@ packages:
   - rpmdevtools
   - setroubleshoot
   - smem
-  - spotify
   - strace
   - sysstat
   - tcpdump
   - texlive-latex
   - tig
+
+# third party packages
+package_third_party:
+  - "https://prerelease.keybase.io/keybase_amd64.rpm"
+  - "https://zoom.us/client/latest/zoom_x86_64.rpm"
