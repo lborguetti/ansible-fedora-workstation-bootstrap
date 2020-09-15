@@ -18,6 +18,14 @@ outbound:
       - 176.103.130.130/32
       - 176.103.130.131/32
 
+  - name: dns-over-tls
+    port:
+      - 853
+    protocol: tcp
+    destination:
+      - 1.1.1.1/32
+      - 9.9.9.9/32
+
   - name: dhcp
     port:
       - 67
