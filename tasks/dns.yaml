@@ -1,0 +1,41 @@
+---
+- name: enable dns over tls
+  copy:
+    src: "{{ item }}"
+    dest: "/{{ item }}"
+    owner: root
+    group: root
+    mode: '0644'
+    backup: true
+  with_items:
+    - "etc/systemd/resolved.conf"
+  register: dns
+  tags: dns
+
+- name: ensure NetworkManager do not change dns settings
+  copy:
+    src: "{{ item }}"
+    dest: "/{{ item }}"
+    owner: root
+    group: root
+    mode: '0644'
+  with_items:
+    - "etc/NetworkManager/conf.d/10-dns-systemd-resolved.conf"
+  register: networkmanager
+  tags: dns
+
+- name: enable systemd-resolved services
+  systemd:
+    name: systemd-resolved
+    enabled: true
+    state: "{{ (item.changed) | ternary('restarted', 'started') }}"
+  with_items: "{{ dns.results }}"
+  tags: dns
+
+- name: restart NetworkManager services
+  systemd:
+    name: NetworkManager
+    enabled: true
+    state: "{{ (item.changed) | ternary('restarted', 'started') }}"
+  with_items: "{{ networkmanager.results }}"
+  tags: dns
