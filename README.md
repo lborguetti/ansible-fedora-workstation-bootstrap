@@ -15,7 +15,7 @@ git clone https://github.com/lborguetti/ansible-fedora-workstation-bootstrap
 
 ```shell
 cd ansible-fedora-workstation-bootstrap
-sudo dnf install python3-virtualenv
+sudo dnf install python3-virtualenv make
 virtualenv --system-site-packages .venv
 source .venv/bin/activate
 pip install ansible
@@ -28,7 +28,7 @@ make provision
 ```
 
 You can select one of part of provisioning using tags. The tags available are
-`dotfiles`, `iptables`, `ipv6`, `nvim` and `packages`.
+`dns`, `dotfiles`, `iptables`, `ipv6`, `nvim`, `keybase`, `packages` and `zoom`.
 
 ```shell
 make provision "tags=iptables"

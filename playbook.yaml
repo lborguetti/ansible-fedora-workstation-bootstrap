@@ -12,6 +12,10 @@
     - vars/iptables.yaml
 
   tasks:
+    - include_tasks: tasks/dns.yaml
+      tags:
+        - dns
+
     - include_tasks: tasks/dotfiles.yaml
       tags:
         - dotfiles
@@ -31,4 +35,6 @@
 
     - include_tasks: tasks/packages.yaml
       tags:
+        - keybase
         - packages
+        - zoom
