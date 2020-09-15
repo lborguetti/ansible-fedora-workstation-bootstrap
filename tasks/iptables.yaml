@@ -11,10 +11,10 @@
 
 - name: copy iptables configs
   template:
-    src: "etc/sysconfig/{{ item }}.j2"
-    dest: "/etc/sysconfig/{{ item }}"
+    src: "{{ item }}.j2"
+    dest: "/{{ item }}"
   with_items:
-    - iptables
+    - "etc/sysconfig/iptables"
   register: iptables
   tags: iptables
 
@@ -35,7 +35,7 @@
 
 - name: enable iptables services
   systemd:
-    name: "{{ item.item }}"
+    name: iptables
     enabled: true
     state: "{{ (item.changed) | ternary('restarted', 'started') }}"
   with_items: "{{ iptables.results }}"
