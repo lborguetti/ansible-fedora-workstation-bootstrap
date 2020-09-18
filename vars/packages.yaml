@@ -64,6 +64,7 @@ packages:
   - tcpdump
   - texlive-latex
   - tig
+  - wireshark
 
 # third party packages
 package_third_party:
