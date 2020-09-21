@@ -50,3 +50,33 @@
   tags:
     - dotfiles
     - git
+
+- name: check if local fonts directory exists
+  stat:
+    path: "{{ home_path }}/.local/share/fonts/truetype"
+  become: false
+  register: fonts
+  tags:
+    - dotfiles
+    - fonts
+
+- name: create local fonts directory
+  file:
+    path: "{{ home_path }}/.local/share/fonts/truetype"
+    state: directory
+    mode: 0755
+  become: false
+  when: not fonts.stat.exists
+  tags:
+    - dotfiles
+    - fonts
+
+- name: copy local fonts
+  copy:
+    src: "fonts/"
+    dest: "{{ home_path }}/.local/share/fonts/truetype"
+    mode: preserve
+  become: false
+  tags:
+    - dotfiles
+    - fonts
