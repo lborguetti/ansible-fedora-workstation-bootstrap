@@ -54,6 +54,7 @@ packages:
   - pulseeffects
   - pwgen
   - ranger
+  - rclone
   - remmina
   - remmina-plugins-rdp
   - rpmdevtools
