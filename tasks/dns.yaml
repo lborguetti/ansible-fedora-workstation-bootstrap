@@ -1,4 +1,18 @@
 ---
+- name: check if systemd directory exists
+  stat:
+    path: "/etc/systemd/"
+  register: systemd
+  tags: dns
+
+- name: create systemd directory
+  file:
+    path: "/etc/systemd/"
+    state: directory
+    mode: 0755
+  when: not systemd.stat.exists
+  tags: dns
+
 - name: enable dns over tls
   copy:
     src: "{{ item }}"
@@ -10,6 +24,20 @@
   with_items:
     - "etc/systemd/resolved.conf"
   register: dns
+  tags: dns
+
+- name: check if NetworkManager directory exists
+  stat:
+    path: "/etc/NetworkManager/conf.d/"
+  register: nm
+  tags: dns
+
+- name: create NetworkManager directory
+  file:
+    path: "/etc/NetworkManager/conf.d/"
+    state: directory
+    mode: 0755
+  when: not nm.stat.exists
   tags: dns
 
 - name: ensure NetworkManager do not change dns settings
@@ -30,7 +58,9 @@
     enabled: true
     state: "{{ (item.changed) | ternary('restarted', 'started') }}"
   with_items: "{{ dns.results }}"
-  tags: dns
+  tags:
+    - dns
+    - molecule-notest
 
 - name: restart NetworkManager services
   systemd:
