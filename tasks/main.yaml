@@ -1,0 +1,27 @@
+---
+- include: dns.yaml
+  tags:
+    - dns
+
+- include: dotfiles.yaml
+  tags:
+    - dotfiles
+
+- include: iptables.yaml
+  tags:
+    - iptables
+
+- include: ipv6.yaml
+  tags:
+    - ipv6
+
+- include: nvim.yaml
+  tags:
+    - dotfiles
+    - nvim
+
+- include: packages.yaml
+  tags:
+    - keybase
+    - packages
+    - zoom

@@ -8,11 +8,27 @@
 
 - name: create home directory
   file:
-    path: "{{ home_path }}/bin"
+    path: "{{ home_path }}"
     state: directory
     mode: 0755
   become: false
   when: not home.stat.exists
+  tags: dotfiles
+
+- name: check if ~/bin directory exists
+  stat:
+    path: "{{ home_path }}/bin"
+  become: false
+  register: bin
+  tags: dotfiles
+
+- name: create ~/bin directory
+  file:
+    path: "{{ home_path }}/bin"
+    state: directory
+    mode: 0755
+  become: false
+  when: not bin.stat.exists
   tags: dotfiles
 
 - name: copy bashrc dotfile
@@ -26,6 +42,36 @@
   tags:
     - dotfiles
     - bashrc
+
+- name: check if nash directory exists
+  stat:
+    path: "{{ home_path }}/nash"
+  become: false
+  register: nash
+  tags:
+    - dotfiles
+    - nash
+
+- name: create nash directory
+  file:
+    path: "{{ home_path }}/nash"
+    state: directory
+    mode: 0755
+  become: false
+  when: not nash.stat.exists
+  tags:
+    - dotfiles
+    - nash
+
+- name: copy nash dotfiles
+  copy:
+    src: "nash/"
+    dest: "{{ home_path }}/nash"
+    mode: preserve
+  become: false
+  tags:
+    - dotfiles
+    - nash
 
 - name: copy tmux dotfile
   copy:
@@ -80,3 +126,4 @@
   tags:
     - dotfiles
     - fonts
+

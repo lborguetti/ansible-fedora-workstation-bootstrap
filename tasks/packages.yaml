@@ -39,6 +39,27 @@
     - packages
     - zoom
 
+- name: check if nashroot directory exists
+  stat:
+    path: "{{ home_path }}/nashroot"
+  become: false
+  register: nashroot
+  tags:
+    - dotfiles
+    - nash
+
+- name: install nash
+  shell: |
+    GOPATH="{{ golang_path }}" go get -d github.com/madlambda/nash
+    cd "{{ golang_path}}/src/github.com/madlambda/nash/" && NASHROOT="{{ home_path }}/nashroot" make install
+  args:
+    executable: /usr/bin/bash
+  become: false
+  when: not nashroot.stat.exists
+  tags:
+    - nash
+    - packages
+
 - name: autoremove unneeded packages installed as dependencies
   dnf:
     autoremove: true

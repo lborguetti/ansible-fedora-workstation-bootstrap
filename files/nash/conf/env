@@ -1,0 +1,46 @@
+#!/usr/bin/env nash
+
+#
+# Setup environment variables
+#
+
+var PLAN9   = $HOME+"/Projects/plan9port/"
+var GOPATH  = $HOME+"/Projects/go-workspace"
+var LBIN    = $HOME+"/bin"
+var FZFPATH = $HOME+"/.fzf"
+var CDPATH  = ( $HOME $HOME+"/Projects" $GOPATH+"/src" )
+var LANG    = "en_US.UTF-8"
+var PATH    = ""
+var PATHS   = (
+	"/bin"
+	"/sbin"
+	"/usr/bin"
+	"/usr/local/bin"
+	"/usr/sbin"
+	$FZFPATH+"/bin"
+	$GOPATH+"/bin"
+	$LBIN
+	$NASHROOT+"/bin"
+	$PLAN9+"/bin"
+)
+
+for p in $PATHS {
+	PATH = $PATH+":"+$p
+}
+
+setenv LANG
+setenv PLAN9
+setenv GOPATH
+setenv CDPATH
+setenv PATH
+
+#
+# Termcap
+#
+setenv LESS_TERMCAP_mb = "[01;31m"
+setenv LESS_TERMCAP_md = "[01;31m"
+setenv LESS_TERMCAP_me = "[0m"
+setenv LESS_TERMCAP_se = "[0m"
+setenv LESS_TERMCAP_so = "[00;47;30m"
+setenv LESS_TERMCAP_ue = "[0m"
+setenv LESS_TERMCAP_us = "[01;32m"

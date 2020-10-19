@@ -18,16 +18,14 @@ export PS1='┌─[\[\e[38;5;32m\]\w\[\e[0m\]\[\e[38;5;240m\]$(__git_ps1 " (%s)"
 export SYSTEMD_PAGER=
 
 # GO
-#export GOROOT="{{ golang_root }}"
-#export GOPATH="{{ golang_path }}"
-#export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
+export GOPATH="${HOME}/Projects/go-workspace"
 
 # NASH
-#NASHROOT="{{ nash_root }}"
-#NASHPATH="{{ nash_path }}"
-#export NASHROOT
-#export NASHPATH
-#export PATH="$PATH:$NASHROOT/bin"
+NASHROOT="${HOME}/nashroot"
+NASHPATH="${HOME}/nash"
+export NASHROOT
+export NASHPATH
+export PATH="$PATH:$NASHROOT/bin"
 
 # vpn
 alias vpn="sudo openvpn --cd $HOME/.config/openvpn --config rohan.ovpn"

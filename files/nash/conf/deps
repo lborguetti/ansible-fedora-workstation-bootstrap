@@ -1,0 +1,55 @@
+#!/usr/bin/env nash
+
+#
+# Download any required dependencies
+#
+
+fn getnashcomplete() {
+	var _, status <= test -d $NASHPATH+"/lib/nashcomplete"
+
+	if $status != "0" {
+		echo "nashcomplete not installed"
+		echo "Trying to download dependencies..."
+		mkdir -p $NASHPATH+"/lib"
+
+		chdir($NASHPATH+"/lib")
+
+		git clone https://github.com/madlambda/nashcomplete.git
+
+		chdir($HOME)
+	}
+}
+
+fn getnashlib() {
+	var _, status <= test -d $NASHPATH+"/lib/nashlib"
+
+	if $status != "0" {
+		echo "nashlib not installed"
+		echo "Trying to download dependencies..."
+		mkdir -p $NASHPATH+"/lib"
+
+		chdir($NASHPATH+"/lib")
+
+		git clone https://github.com/madlambda/nashlib.git
+
+		chdir($HOME)
+	}
+}
+
+fn getfzf() {
+	var _, status <= test -d $HOME+"/.fzf"
+
+	if $status != "0" {
+		echo "fzf fuzzy finder not installed."
+		echo "Installing fzf..."
+
+		chdir($HOME)
+
+		git clone --depth 1 https://github.com/junegunn/fzf.git .fzf
+		./.fzf/install --all >[1=] >[2=]
+	}
+}
+
+getnashcomplete()
+getnashlib()
+getfzf()

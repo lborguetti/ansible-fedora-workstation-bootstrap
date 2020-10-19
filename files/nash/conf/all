@@ -1,0 +1,9 @@
+#!/usr/bin/env nash
+
+#
+# import config files
+#
+
+import "deps"
+import "env"
+import "prompt"

@@ -1,0 +1,9 @@
+#!/usr/bin/env nash
+
+#
+# import alias files
+#
+
+import "cd"
+import "common"
+import "ls"

@@ -1,0 +1,94 @@
+# vpn
+fn vpn() {
+	sudo openvpn --cd $HOME+"/.config/openvpn" --config rohan.ovpn
+}
+
+bindfn vpn vpn
+
+# nvim -> vim
+fn vim() {
+	nvim
+}
+
+bindfn vim vim
+
+# edit /etc/hosts alias
+fn h() {
+	sudo nvim /etc/hosts
+}
+
+bindfn h h
+
+# pbpaste/pbcopy
+fn pbpaste() {
+	xsel --clipboard --output
+}
+
+bindfn pbpaste pbpaste
+
+fn pbcopy(filename) {
+	current_dir, status <= pwd
+
+	if $status != "0" {
+		return
+	}
+
+	file = $current_dir+"/"+$filename
+
+	cat $file | xsel --clipboard --input
+}
+
+bindfn pbcopy pbcopy
+
+# load virtualenv
+#fn venv(){
+#ias venv='v=".venv/bin/activate"; if [ -e ${v} ]; then source ${v} ]; else echo "virtualenv not found in current dir"; fi'
+#}
+
+# chcon docker
+fn chcondocker(dir) {
+	chcon -R -t svirt_sandbox_file_t $dir
+}
+
+bindfn chcondocker chcondocker
+
+# myip alias
+fn myip(type) {
+	fn _error(type, status, err) {
+		print("Failed to get %s ip address. status[%s], error[%s]\n", $type, $status, $err)
+
+		return
+	}
+
+	if $type == "public" {
+		var ipaddress, status <= curl https://ifconfig.co
+
+		if $status == "0" {
+			print("Public ip address: %s\n", $ipaddress)
+
+			return
+		} else {
+			_error($type, $status, $ipaddress)
+		}
+	}
+	if $type == "private" {
+		var out, status <= (ip route show | grep default)
+
+		if $status == "0" {
+			var _out <= split($out, " ")
+
+			var interface = $_out[4]
+			var ipaddress = $_out[6]
+
+			print("Interface: %s\nPrivate ip address: %s\n", $interface, $ipaddress)
+
+			return
+		} else {
+			_error($type, $status, $out)
+		}
+	}
+
+	print("Usage: myip [public|private]\n")
+}
+
+bindfn myip myip

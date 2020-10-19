@@ -1,0 +1,6 @@
+# common functions
+
+fn dotnash_clean() {
+        rm -rf $NASHPATH + "/lib"
+        rm -rf $FZFPATH
+}

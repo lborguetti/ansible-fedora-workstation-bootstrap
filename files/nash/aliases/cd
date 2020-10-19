@@ -1,0 +1,55 @@
+#!/usr/bin/env nash
+
+#
+# cd: overrides built-in cd, looks for directories in CDPATH variable
+#
+
+fn __docd(path) {
+	chdir($path)
+}
+
+fn cd(path) {
+	if $path == "-" {
+		__docd($OLDPWD)
+
+		return
+	}
+
+	var newpath = ""
+	var pwd = ""
+	var status = ""
+
+	_, status <= echo $path | grep "^/" >[1=]
+
+	if $status != "0" {
+		pwd <= pwd | tr -d "\n"
+
+		newpath = $pwd+"/"+$path
+
+		_, status <= test -d $newpath
+
+		if $status == "0" {
+			__docd($newpath)
+
+			return
+		}
+
+		for prefix in $CDPATH {
+			newpath = $prefix+"/"+$path
+
+			_, status <= test -d $newpath
+
+			if $status == "0" {
+				__docd($newpath)
+
+				return
+			}
+		}
+	}
+
+	path, status <= echo -n $path | sed "s#^~#"+$HOME+"#g" | tr -d "\n"
+
+	__docd($path)
+}
+
+bindfn cd cd

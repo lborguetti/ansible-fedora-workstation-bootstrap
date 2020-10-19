@@ -1,0 +1,7 @@
+#!/usr/bin/env nash
+
+import "conf/all"
+import "nashlib/all"
+import "aliases/all"
+import "nashcomplete/all"
+import "autocomplete/init"

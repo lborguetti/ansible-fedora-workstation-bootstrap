@@ -1,0 +1,68 @@
+#!/usr/bin/env nash
+
+# getDir: return the current path
+# The user's home directory is changed to the character ~
+# If the current path is greater than 3 directories this function will
+# return the shortened current path, using the first letter of the first
+# directories plus the last directory.
+# example:
+# /home/lucianofaustino/Projects/go-workspace/src/github.com/madlambda
+# ~/P/g/s/g/m/nash
+fn getDir() {
+	var current_dir, status <= pwd | sed -e "s@"+$HOME+"@~@g"
+
+	if $status == "0" {
+		var out <= split($current_dir, "/")
+		var len_out <= len($out)
+		var _, status <= test $len_out -ge "3"
+
+		if $status == "0" {
+			current_dir = ""
+
+			var last_cut <= expr $len_out - 2
+			var seq <= seq 0 $last_cut
+			var range <= split($seq, "\n")
+
+			for r in $range {
+				var _, status <= echo $out[$r] | grep "^\\."
+
+				if $status == "0" {
+					var dir <= echo $out[$r] | cut -c 1-2
+				} else {
+					var dir <= echo $out[$r] | cut -c 1
+				}
+
+				current_dir = $current_dir+$dir+"/"
+			}
+
+			var last <= expr $len_out - 1
+
+			current_dir = $current_dir+$out[$last]
+		}
+
+		return $current_dir
+	}
+}
+
+# updatePrompt: update the PROMPT environment variable
+# PROMPT: is a special variable used by nash command  line to setup your prompt.
+fn updatePrompt() {
+	var current_dir <= getDir()
+
+	var promptsym = $NASH_FG_LRED+"λ>"+$NASH_RESET+" "
+	var prompt = $NASH_BG_BLACK+$NASH_FG_LBLUE+$current_dir+" "+$promptsym
+
+	var branch, status <= git rev-parse --abbrev-ref HEAD >[2=]
+
+	if $status == "0" {
+		var git_prompt = $NASH_FG_LGREEN+"git:("+$NASH_FG_LYELLOW+$branch+$NASH_FG_LGREEN+")"
+
+		prompt = $NASH_BG_BLACK+$NASH_FG_LBLUE+$current_dir+" "+$git_prompt+" "+$promptsym
+	}
+
+	setenv PROMPT = $prompt
+}
+
+fn nash_repl_before() {
+	updatePrompt()
+}
