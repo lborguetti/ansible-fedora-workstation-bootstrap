@@ -1,0 +1,48 @@
+#!/usr/bin/env nash
+
+fn globerize(args...) {
+	var globerizedargs = ()
+
+	for arg in $args {
+		var expandedargs, err <= glob($arg)
+
+		globerizedargs <= _append_glob_res($globerizedargs, $arg, $expandedargs, $err)
+	}
+
+	if len($globerizedargs) == "0" {
+		return $globerizedargs
+	} else {
+		var globerizedargsplushome = ()
+
+		for arg in $globerizedargs {
+			var newarg, status <= echo -n $arg | sed "s#^~#"+$HOME+"#g" | tr -d "\n"
+
+			if $status == "0" {
+				globerizedargsplushome <= append($globerizedargsplushome, $newarg)
+			} else {
+				globerizedargsplushome <= append($globerizedargsplushome, $arg)
+			}
+		}
+
+		return $globerizedargsplushome
+	}
+}
+
+fn _append_glob_res(args, arg, expandedargs, err) {
+	if $err != "" {
+		var args <= append($args, $arg)
+
+		return $args
+	}
+	if len($expandedargs) == "0" {
+		var args <= append($args, $arg)
+
+		return $args
+	}
+
+	for expandedarg in $expandedargs {
+		args <= append($args, $expandedarg)
+	}
+
+	return $args
+}

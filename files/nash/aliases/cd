@@ -4,52 +4,64 @@
 # cd: overrides built-in cd, looks for directories in CDPATH variable
 #
 
-fn __docd(path) {
+fn __docd(path, oldpwd) {
+	var OLDPWD = $oldpwd
+
+	setenv OLDPWD
+
 	chdir($path)
 }
 
-fn cd(path) {
-	if $path == "-" {
-		__docd($OLDPWD)
+fn cd(args...) {
+	var argslen <= len($args)
+	var pwd <= pwd | tr -d "\n"
+
+	if $argslen == "0" {
+		__docd($HOME, $pwd)
+
+		return
+	}
+	if $argslen != "1" {
+		echo "What The Fuck?"
 
 		return
 	}
 
-	var newpath = ""
-	var pwd = ""
-	var status = ""
+	var path <= globerize($args...)
 
-	_, status <= echo $path | grep "^/" >[1=]
+	if $path[0] == "-" {
+		__docd($OLDPWD, $pwd)
+
+		return
+	}
+
+	var _, status <= echo $path[0] | grep "^/" >[1=]
 
 	if $status != "0" {
-		pwd <= pwd | tr -d "\n"
-
-		newpath = $pwd+"/"+$path
+		var newpath = $pwd+"/"+$path[0]
 
 		_, status <= test -d $newpath
 
 		if $status == "0" {
-			__docd($newpath)
+			__docd($newpath, $pwd)
 
 			return
 		}
 
 		for prefix in $CDPATH {
-			newpath = $prefix+"/"+$path
+			newpath = $prefix+"/"+$path[0]
 
 			_, status <= test -d $newpath
 
 			if $status == "0" {
-				__docd($newpath)
+				__docd($newpath, $pwd)
 
 				return
 			}
 		}
 	}
 
-	path, status <= echo -n $path | sed "s#^~#"+$HOME+"#g" | tr -d "\n"
-
-	__docd($path)
+	__docd($path[0], $pwd)
 }
 
 bindfn cd cd

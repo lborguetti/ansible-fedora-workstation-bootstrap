@@ -1,41 +1,50 @@
+#!/usr/bin/env nash
+
 # vpn
 fn vpn() {
-	sudo openvpn --cd $HOME+"/.config/openvpn" --config rohan.ovpn
+	/usr/bin/sudo /usr/sbin/openvpn --cd $HOME+"/.config/openvpn" --config rohan.ovpn
 }
 
 bindfn vpn vpn
 
 # nvim -> vim
-fn vim() {
-	nvim
+fn vim(args...) {
+	var expandedargs <= globerize($args...)
+
+	/usr/bin/nvim $expandedargs
 }
 
 bindfn vim vim
 
+# nvim -> vim
+fn lsl(args...) {
+	var expandedargs <= globerize($args...)
+
+	ls $expandedargs
+}
+
+bindfn lsl lsl
+
 # edit /etc/hosts alias
 fn h() {
-	sudo nvim /etc/hosts
+	/usr/bin/sudo /usr/bin/nvim /etc/hosts
 }
 
 bindfn h h
 
 # pbpaste/pbcopy
-fn pbpaste() {
-	xsel --clipboard --output
+fn pbpaste(args...) {
+	var expandedargs <= globerize($args...)
+
+	/usr/bin/xsel --clipboard --output $expandedargs
 }
 
 bindfn pbpaste pbpaste
 
-fn pbcopy(filename) {
-	current_dir, status <= pwd
+fn pbcopy(args...) {
+	var expandedargs <= globerize($args...)
 
-	if $status != "0" {
-		return
-	}
-
-	file = $current_dir+"/"+$filename
-
-	cat $file | xsel --clipboard --input
+	/usr/bin/xsel --clipboard --input $expandedargs
 }
 
 bindfn pbcopy pbcopy
@@ -46,14 +55,18 @@ bindfn pbcopy pbcopy
 #}
 
 # chcon docker
-fn chcondocker(dir) {
-	chcon -R -t svirt_sandbox_file_t $dir
+fn chcondocker(args...) {
+	var expandedargs <= globerize($args...)
+
+	/usr/bin/chcon -R -t svirt_sandbox_file_t $expandedargs
 }
 
 bindfn chcondocker chcondocker
 
 # myip alias
-fn myip(type) {
+fn myip(args...) {
+	var type <= globerize($args...)
+
 	fn _error(type, status, err) {
 		print("Failed to get %s ip address. status[%s], error[%s]\n", $type, $status, $err)
 
@@ -61,7 +74,7 @@ fn myip(type) {
 	}
 
 	if $type == "public" {
-		var ipaddress, status <= curl https://ifconfig.co
+		var ipaddress, status <= /usr/bin/curl https://ifconfig.co
 
 		if $status == "0" {
 			print("Public ip address: %s\n", $ipaddress)
