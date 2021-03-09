@@ -69,6 +69,7 @@ packages:
   - texlive-beamer
   - texlive-latex
   - tig
+  - tmate
   - wireshark
 
 # third party packages
