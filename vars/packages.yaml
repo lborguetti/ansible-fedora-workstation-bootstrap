@@ -6,6 +6,9 @@ repo_rpmfusion:
 
 repo_iridium: "https://dl.iridiumbrowser.de/fedora_32/iridium-browser.repo"
 
+repo_osquery: "https://pkg.osquery.io/rpm/osquery-s3-rpm.repo"
+rpm_gpp_key_osquery: "https://pkg.osquery.io/rpm/GPG"
+
 # packages to install
 packages:
   - "@C Development Tools and Libraries"
@@ -50,6 +53,7 @@ packages:
   - nmap
   - nmap-ncat
   - openh264-devel
+  - osquery
   - pandoc
   - pcp
   - pcp-webapi

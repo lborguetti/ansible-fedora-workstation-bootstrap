@@ -12,6 +12,18 @@
   tags:
     - packages
 
+- name: add osquery repository gpg key
+  rpm_key:
+    state: present
+    key: "{{ rpm_gpp_key_osquery }}"
+  tags:
+    - packages
+
+- name: add/enable osquery repository
+  command: dnf config-manager --add-repo "{{ repo_osquery }}"
+  tags:
+    - packages
+
 - name: add/enable dropbox repository
   copy:
     src: "etc/yum.repos.d/dropbox.repo"
