@@ -53,6 +53,7 @@ packages:
   - nmap
   - nmap-ncat
   - openh264-devel
+  - openssl
   - osquery
   - pandoc
   - pcp
