@@ -56,4 +56,4 @@ alias dnf-update="sudo dnf update"
 alias st='st -f "Monospace-12"'
 
 # chcon docker
-alias chcondocker='chcon -R -t svirt_sandbox_file_t'
+alias chcondocker='chcon --recursive --type  svirt_sandbox_file_t --range s0'
