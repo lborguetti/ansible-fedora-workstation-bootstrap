@@ -5,8 +5,6 @@
 " Specify a directory for plugins
 call plug#begin('~/.local/share/nvim/site/plugged')
 
-  Plug 'lifepillar/vim-solarized8'
-  Plug 'Lokaltog/vim-easymotion'
   Plug 'kien/ctrlp.vim'
   Plug 'godlygeek/tabular'
   Plug 'scrooloose/nerdcommenter'
@@ -14,7 +12,6 @@ call plug#begin('~/.local/share/nvim/site/plugged')
   Plug 'gcmt/wildfire.vim'
   Plug 'Shougo/neocomplcache'
   Plug 'fatih/vim-go'
-  Plug 'sheerun/vim-polyglot'
   Plug 'ap/vim-buftabline'
 
 " Initialize plugin system
